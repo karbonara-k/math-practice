@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff7df">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>ぱっとけいさん・スピードれんしゅう</title>
+<style>
+:root{--ink:#243047;--paper:#fff7df;--blue:#5b8def;--pink:#ff7b91;--yellow:#ffd45c;--green:#4fc6a4;--purple:#9b83e6;--white:#fff;--shadow:0 5px 0 #d9d3c3}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;min-height:100dvh;user-select:none;-webkit-tap-highlight-color:transparent}
+main{width:min(100%,620px);margin:auto;padding:clamp(12px,3vw,24px);padding-bottom:max(18px,env(safe-area-inset-bottom))}.brand{text-align:center;font-weight:1000;font-size:clamp(24px,6vw,38px);line-height:1.2;margin:8px 0 6px}.sub{text-align:center;font-weight:800;margin:0 0 20px;color:#68738a}.panel{background:#fff;border:3px solid var(--ink);border-radius:24px;padding:clamp(14px,4vw,24px);box-shadow:var(--shadow);margin:14px 0}.section-title{text-align:center;font-size:20px;font-weight:1000;margin:0 0 14px}.courses{display:grid;grid-template-columns:1fr 1fr;gap:12px}.course{position:relative;border:3px solid var(--ink);border-radius:18px;min-height:112px;padding:12px 10px;background:#fff;box-shadow:0 4px 0 #d9d3c3;text-align:center;color:var(--ink);font:inherit;cursor:pointer}.course:active,.btn:active,.key:active{transform:translateY(3px);box-shadow:none}.symbol{font-size:42px;font-weight:1000;line-height:1}.course-name{font-size:15px;font-weight:1000;margin-top:6px}.best{font-size:12px;font-weight:900;margin-top:5px;color:#59647a}.course:nth-child(1){background:#fff0b8}.course:nth-child(2){background:#ffdce3}.course:nth-child(3){background:#dce9ff}.course:nth-child(4){background:#d7f7e9}.course:nth-child(5){background:#e9e0ff}.course:nth-child(6){background:#ffe3c6}.btn{display:block;width:100%;border:3px solid var(--ink);border-radius:18px;background:var(--green);color:var(--ink);font-size:22px;font-weight:1000;padding:15px;box-shadow:0 5px 0 #249c7c;cursor:pointer}.small-btn{font-size:15px;padding:10px;background:#f1f3f8;box-shadow:0 3px 0 #c5cad5;margin-top:12px}.hidden{display:none!important}.topline{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;font-weight:900}.progress{height:12px;border:2px solid var(--ink);border-radius:99px;overflow:hidden;background:#f0f0f0;margin:12px 0}.bar{height:100%;width:0;background:var(--green);transition:width .15s}.question{font-size:clamp(48px,14vw,86px);font-weight:1000;text-align:center;letter-spacing:1px;margin:12px 0 8px;line-height:1.15}.answer{font-size:clamp(34px,10vw,58px);font-weight:1000;text-align:center;min-height:1.2em;color:#4c6edb}.feedback{font-size:clamp(30px,8vw,46px);font-weight:1000;text-align:center;min-height:1.2em;margin:8px 0}.feedback.ok{color:#15966e}.feedback.ng{color:#e5485e}.hint{text-align:center;font-weight:900;color:#68738a;min-height:24px;margin:8px 0 12px}.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.key{border:3px solid var(--ink);border-radius:16px;background:#edf2ff;color:var(--ink);font-size:clamp(24px,7vw,34px);font-weight:1000;padding:12px 4px;min-height:58px;box-shadow:0 4px 0 #c4cee5;cursor:pointer}.key.del{background:#ffe0e5}.key.enter{background:#ffe18a}.tap-advance{position:absolute;inset:0;background:transparent;border:0;cursor:pointer}.question-wrap{position:relative}.countdown{font-size:clamp(84px,24vw,150px);font-weight:1000;text-align:center;line-height:1.3}.result-time{font-size:clamp(34px,10vw,60px);font-weight:1000;text-align:center;color:#4c6edb;margin:8px 0}.result-label{text-align:center;font-size:18px;font-weight:900}.result-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-weight:900;margin:14px 0}.pill{background:#f1f3f8;border-radius:999px;padding:8px 14px}.note{font-size:12px;color:#737d91;text-align:center;line-height:1.6;margin:14px 4px}
+@media(max-width:360px){.courses{gap:8px}.course{padding:9px 5px;min-height:104px}.course-name{font-size:13px}.panel{padding:12px}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">ぱっとけいさん</div><p class="sub">スピードれんしゅう</p></header>
+<section id="menu" class="panel">
+<h1 class="section-title">コースをえらぼう</h1>
+<div class="courses" id="courses"></div>
+<p class="note">1コース 20もん。こたえをいれると、すぐにせいかいがわかるよ。</p>
+</section>
+<section id="ready" class="panel hidden"><h2 class="section-title" id="readyTitle">コース</h2><p class="hint">カウントダウンのあとにスタート！</p><button class="btn" id="startBtn">スタート</button><button class="btn small-btn" id="backReady">コースにもどる</button></section>
+<section id="countPanel" class="panel hidden"><div class="hint">じゅんびしてね！</div><div id="countdown" class="countdown">3</div></section>
+<section id="game" class="panel hidden">
+<div class="topline"><span id="courseLabel">コース</span><span id="questionCount">1 / 20</span></div><div class="progress"><div class="bar" id="progressBar"></div></div>
+<div class="question-wrap" id="questionWrap"><div class="question" id="question">3 + 4</div><div class="answer" id="answer"></div><div class="feedback" id="feedback"></div><div class="hint" id="hint">こたえをおしてね</div><button class="tap-advance hidden" id="advance" aria-label="つぎのもんだいへ"></button></div>
+<div class="keypad" id="keypad"></div>
+</section>
+<section id="result" class="panel hidden"><h2 class="section-title">クリア！</h2><div class="result-label">かかったじかん</div><div class="result-time" id="elapsed">00:00.0</div><div class="result-stats"><span class="pill" id="score">20 / 20 もん</span><span class="pill" id="bestResult">ベスト  --</span></div><button class="btn" id="retry">もういちど</button><button class="btn small-btn" id="backMenu">コースせんたくへ</button></section>
+<p class="note">ベストタイムは、このスマホ・タブレットのブラウザにほぞんされます。べつのたんまつとはきょうゆうされません。</p>
+</main>
+<script>
+const courseDefs=[
+{id:'add10',symbol:'＋',name:'たしざん 10まで',desc:'1けた＋1けた',make:()=>{let a=rand(1,9),b=rand(0,10-a);return {a,b,op:'+',ans:a+b}}},
+{id:'add20',symbol:'＋',name:'たしざん 20まで',desc:'くりあがり',make:()=>{let a=rand(2,9),b=rand(Math.max(2,11-a),9);if(a+b>18)b=18-a;return {a,b,op:'+',ans:a+b}}},
+{id:'add2digit',symbol:'＋',name:'2けたのたしざん',desc:'20まで',make:()=>{let a=rand(1,9),b=rand(10,20-a);return {a,b,op:'+',ans:a+b}}},
+{id:'sub10',symbol:'−',name:'ひきざん 10まで',desc:'0よりちいさくならない',make:()=>{let a=rand(1,10),b=rand(0,a);return {a,b,op:'−',ans:a-b}}},
+{id:'sub20',symbol:'−',name:'ひきざん 20まで',desc:'2けた',make:()=>{let a=rand(11,20),b=rand(1,a);return {a,b,op:'−',ans:a-b}}},
+{id:'mixed',symbol:'＋ −',name:'ミックス',desc:'たしざん・ひきざん',make:()=>courseDefs[rand(0,4)].make()}
+];
+const $=id=>document.getElementById(id);const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+let selected=courseDefs[0],questions=[],idx=0,input='',correct=0,startedAt=0,finishedAt=0,judged=false,bestNow=null,countTimer=null;
+const views=['menu','ready','countPanel','game','result'];function show(id){views.forEach(v=>$(v).classList.toggle('hidden',v!==id))}
+function formatMs(ms){let sec=ms/1000,m=Math.floor(sec/60),s=Math.floor(sec%60),d=Math.floor((ms%1000)/100);return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+'.'+d}
+function getBest(id){try{return localStorage.getItem('math-best-'+id)}catch(e){return null}}
+function setBest(id,v){try{localStorage.setItem('math-best-'+id,String(v))}catch(e){}}
+function drawCourses(){ $('courses').innerHTML='';courseDefs.forEach(c=>{let b=document.createElement('button');b.className='course';let best=getBest(c.id);b.innerHTML=`<div class="symbol">${c.symbol}</div><div class="course-name">${c.name}</div><div class="best">ベスト：${best?formatMs(Number(best)):'--:--.-'}</div>`;b.addEventListener('click',()=>{selected=c;$('readyTitle').textContent=c.name;show('ready')});$('courses').appendChild(b)}) }
+function startCountdown(){show('countPanel');let n=3;$('countdown').textContent=n;clearInterval(countTimer);countTimer=setInterval(()=>{n--;if(n>0){$('countdown').textContent=n}else if(n===0){$('countdown').textContent='スタート！'}else{clearInterval(countTimer);beginGame()}},700)}
+function beginGame(){questions=Array.from({length:20},()=>selected.make());idx=0;input='';correct=0;judged=false;startedAt=performance.now();$('courseLabel').textContent=selected.name;show('game');buildKeypad();renderQuestion()}
+function buildKeypad(){let keys=['1','2','3','4','5','6','7','8','9','けす','0','けってい'];$('keypad').innerHTML='';keys.forEach(k=>{let b=document.createElement('button');b.className='key'+(k==='けす'?' del':k==='けってい'?' enter':'');b.textContent=k;b.addEventListener('click',()=>keyPress(k));$('keypad').appendChild(b)})}
+function renderQuestion(){let q=questions[idx];$('questionCount').textContent=(idx+1)+' / 20';$('progressBar').style.width=(idx/20*100)+'%';$('question').textContent=`${q.a} ${q.op} ${q.b} = ?`;$('answer').textContent=input;$('feedback').textContent='';$('feedback').className='feedback';$('hint').textContent='こたえをおしてね';$('keypad').classList.remove('hidden');$('advance').classList.add('hidden');judged=false}
+function keyPress(k){if(judged)return;if(k==='けす'){input=input.slice(0,-1)}else if(k==='けってい'){judge()}else if(input.length<3){input+=k} $('answer').textContent=input}
+function judge(){if(!input)return;let q=questions[idx],ok=Number(input)===q.ans;if(ok)correct++;judged=true;$('feedback').textContent=ok?'せいかい！':'ざんねん！ こたえは '+q.ans;$('feedback').className='feedback '+(ok?'ok':'ng');$('hint').textContent='がめんをタップして つぎへ';$('keypad').classList.add('hidden');$('advance').classList.remove('hidden');$('progressBar').style.width=((idx+1)/20*100)+'%'}
+$('advance').addEventListener('click',()=>{if(!judged)return;idx++;if(idx>=20){finishGame();return}input='';renderQuestion()});$('questionWrap').addEventListener('click',e=>{if(judged&&e.target!==$('advance')){$('advance').click()}});
+function finishGame(){finishedAt=performance.now();let ms=Math.round(finishedAt-startedAt);bestNow=getBest(selected.id);if(!bestNow||ms<Number(bestNow)){setBest(selected.id,ms);bestNow=String(ms)}$('elapsed').textContent=formatMs(ms);$('score').textContent=correct+' / 20 もん';$('bestResult').textContent='ベスト '+formatMs(Number(bestNow));show('result')}
+$('startBtn').addEventListener('click',startCountdown);$('backReady').addEventListener('click',()=>{drawCourses();show('menu')});$('retry').addEventListener('click',startCountdown);$('backMenu').addEventListener('click',()=>{drawCourses();show('menu')});drawCourses();show('menu');
+</script>
+</body>
+</html>
